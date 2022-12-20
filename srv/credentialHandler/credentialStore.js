@@ -3,7 +3,10 @@ const fetch = require('node-fetch'); // use version 2  when working with commonJ
 
 const xsenv = require("@sap/xsenv");
 xsenv.loadEnv();
+// const vcap_services=JSON.parse(process.env.VCAP_SERVICES);
+// const binding = vcap_services.getServices({ credstore: { tag: 'credstore' } }).credstore;
 const binding = xsenv.getServices({ credstore: { tag: 'credstore' } }).credstore;
+
 
 function checkStatus(response) {
     if (!response.ok) console.log(`Please verify that you CredStore binding info is up to date

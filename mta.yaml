@@ -6,6 +6,8 @@ modules:
 - name: techtopic-credential-retriever-srv
   type: nodejs
   path: gen/srv
+  requires:
+    - name: techtopic-070-credential-store
   provides:
   - name: srv-api
     properties:
@@ -38,6 +40,36 @@ modules:
     - npm install
     - npm run build:cf
     supported-platforms: []
+- name: techtopic-credential-retriever-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: techtopic-credential-retriever-destination-service
+    parameters:
+      content-target: true
+  - name: techtopic-credential-retriever-repo-host
+    parameters:
+      service-key:
+        name: techtopic-credential-retriever-repo-host-key
+  - name: uaa_techtopic-credential-retriever
+    parameters:
+      service-key:
+        name: uaa_techtopic-credential-retriever-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: credential_retriever_app_techtopic_credential_retriever_repo_host
+          ServiceInstanceName: techtopic-credential-retriever-html5-srv
+          ServiceKeyName: techtopic-credential-retriever-repo-host-key
+          sap.cloud.service: credential-retriever-app
+        - Authentication: OAuth2UserTokenExchange
+          Name: credential_retriever_app_uaa_techtopic_credential_retriever
+          ServiceInstanceName: techtopic-credential-retriever-xsuaa-service
+          ServiceKeyName: uaa_techtopic-credential-retriever-key
+          sap.cloud.service: credential-retriever-app
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
 resources:
 - name: techtopic-credential-retriever-repo-host
   type: org.cloudfoundry.managed-service
@@ -49,20 +81,24 @@ resources:
   type: org.cloudfoundry.managed-service
   parameters:
     config:
-      HTML5Runtime_enabled: false
-      init_data:
-        instance:
-          destinations:
-          - Authentication: NoAuthentication
-            Name: ui5
-            ProxyType: Internet
-            Type: HTTP
-            URL: https://ui5.sap.com
-          existing_destinations_policy: update
+      HTML5Runtime_enabled: true
       version: 1.0.0
     service: destination
     service-name: techtopic-credential-retriever-destination-service
     service-plan: lite
+- name: techtopic-070-credential-store
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service-name: techtopic-070-credential-store
+    service: credstore
+    service-plan: trial
+- name: uaa_techtopic-credential-retriever
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: techtopic-credential-retriever-xsuaa-service
+    service-plan: application
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true

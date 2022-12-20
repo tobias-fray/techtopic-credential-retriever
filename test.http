@@ -1,0 +1,4 @@
+GET /api/v1/credentials/password?name=instagram HTTP/1.1
+Host: credstore.cfapps.us10.hana.ondemand.com
+sapcp-credstore-namespace: socialMedia
+Authorization: Basic 4ef0db0f-48d9-4753-907d-0dbdf934cfdb.0.JaVH+GzfJA7BkRcjvWbBG4TVs9VlyCpYC8X1GjFJ0FU=:b5pSqEnXZLibTHkiQwXf8KEy5t2VKKHnvmgIeT1ze9GsuUd44e3qkaDEvM5kOtST.0.POfHmYKztJaXjYmlrBy7YoRGKTEE95Ql4/tXvD5b0go=

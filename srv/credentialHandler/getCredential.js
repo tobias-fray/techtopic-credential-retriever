@@ -1,6 +1,7 @@
 const {readCredential} =  require('./credentialStore')
 
 const logCredentialInformation = async function (req) {
+    console.log("Test")
     credentialInfo = req;
     namespace = CredentialInfo.namespace;
     type = CredentialInfo.type;

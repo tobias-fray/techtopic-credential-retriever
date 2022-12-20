@@ -7,12 +7,20 @@
     "private": true,
     "dependencies": {
         "@sap/cds": "^6",
-        "express": "^4"
+        "@sap/xsenv": "^3.4.0",
+        "@sap/xssec": "^3",
+        "axios": "^1.2.1",
+        "express": "^4",
+        "hdb": "^0.19.0",
+        "node-fetch": "^2.6.7",
+        "node-jose": "^2.1.1",
+        "@sap/cds-odata-v2-adapter-proxy": "^1.9.10",
+        "passport": "^0"
     },
     "devDependencies": {
         "@sap/ux-specification": "^1.102.14",
-        "sqlite3": "^5.0.4",
-        "rimraf": "^3.0.2"
+        "rimraf": "^3.0.2",
+        "sqlite3": "^5.0.4"
     },
     "scripts": {
         "start": "cds run",
@@ -20,6 +28,11 @@
         "undeploy": "cf undeploy techtopic-credential-retriever --delete-services --delete-service-keys --delete-service-brokers",
         "build": "rimraf resources mta_archives && mbt build --mtar archive",
         "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+    },
+    "cds": {
+        "requires": {
+            "credstore": ""
+        }
     },
     "engines": {
         "node": "^16.15"
