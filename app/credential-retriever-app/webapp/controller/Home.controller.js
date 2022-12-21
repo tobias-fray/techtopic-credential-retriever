@@ -32,18 +32,33 @@ sap.ui.define([
                     credentialName: this.getView().byId("credentialInput").getValue()
                 }
                 console.log(oCredentialInformation)
-                    
-                oModel.create(
-                    "/CredentialInformation",
-                    oCredentialInformation,
-                    {
-                        success: function(oCredentialInformation) {
-                            console.log("Success");
-                        }.bind(this),
-                        error: function() {
-                            console.log("Error");
-                        }.bind(this)
-                    });
+                   
+                oModel.callFunction('/CredentialInformation_retrieve', {
+                    method: 'POST',
+                    urlParameters: {
+                        namespace: oCredentialInformation.namespace,
+                        type: oCredentialInformation.type,
+                        credentialName: oCredentialInformation.credentialName
+                    },
+                    success:  () => {
+                        console.log("success");
+                    },
+                    error: () => {
+                        console.log("Error");
+                    }
+                })
+
+                // oModel.create(
+                //     "/CredentialInformation",
+                //     oCredentialInformation,
+                //     {
+                //         success: function(oCredentialInformation) {
+                //             console.log("Success");
+                //         }.bind(this),
+                //         error: function() {
+                //             console.log("Error");
+                //         }.bind(this)
+                //     });
             },
         });
     });
