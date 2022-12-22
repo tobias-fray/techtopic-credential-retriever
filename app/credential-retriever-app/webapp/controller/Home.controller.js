@@ -26,12 +26,13 @@ sap.ui.define([
 
                 var oModel = this.getView().getModel();
 
-                const oCredentialInformation = {
+                var oCredentialInformation = {
                     namespace: this.getView().byId("namespaceInput").getValue(),
                     type: this.getView().byId("typeInput").getValue(),
                     credentialName: this.getView().byId("credentialInput").getValue()
                 }
-                console.log(oCredentialInformation)
+                // console.log(oCredentialInformation)
+                // oModel.metadataLoaded().then(function () {    
                     
                 oModel.create(
                     "/CredentialInformation",

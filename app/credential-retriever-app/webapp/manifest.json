@@ -17,7 +17,7 @@
         },
         "dataSources": {
             "mainService": {
-                "uri": "/credential/",
+                "uri": "/v2/credential/",
                 "type": "OData",
                 "settings": {
                     "annotations": [],
