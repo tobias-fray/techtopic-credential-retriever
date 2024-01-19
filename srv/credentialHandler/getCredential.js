@@ -1,10 +1,10 @@
 const {readCredential} =  require('./credentialStore')
 
 const logCredentialInformation = async function (req) {
-    const CredentialInfo = req;
+    const CredentialInfo = req.data;
     namespace = CredentialInfo.namespace;
     type = CredentialInfo.type;
-    cName = CredentialInfo.name;
+    cName = CredentialInfo.credentialName;
     const credential = await readCredential(namespace, type, cName);
     //credentials are now usable
     console.log(credential);

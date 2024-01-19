@@ -7,7 +7,7 @@ modules:
   type: nodejs
   path: gen/srv
   requires:
-    - name: techtopic-070-credential-store
+  - name: credstore
   provides:
   - name: srv-api
     properties:
@@ -86,12 +86,12 @@ resources:
     service: destination
     service-name: techtopic-credential-retriever-destination-service
     service-plan: lite
-- name: techtopic-070-credential-store
+- name: credstore
   type: org.cloudfoundry.managed-service
   parameters:
-    service-name: techtopic-070-credential-store
     service: credstore
-    service-plan: trial
+    service-name: credstore
+    service-plan: free
 - name: uaa_techtopic-credential-retriever
   type: org.cloudfoundry.managed-service
   parameters:

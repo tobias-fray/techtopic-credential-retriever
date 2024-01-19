@@ -8,6 +8,9 @@ default-*.json
 gen/
 node_modules/
 target/
+app/credential-retriever-app/dist/
+app/credential-retriever-app/node_modules/
+resources/
 
 # Web IDE, App Studio
 .che/
